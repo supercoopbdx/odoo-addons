@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-extend="XmlReceipt">
+        <t t-jquery="t[t-if='receipt.shop.name']" t-operation="before">
+            <div>Facture</div>
+            <t t-if='receipt.client'>
+                <div><t t-esc='receipt.client' /></div>
+            </t>
+        </t>
+    </t>
+
+    <t t-extend="PosTicket">
+        <t t-jquery="t[t-esc='widget.pos.company.name']" t-operation="before">
+            <div>Facture</div>
+            <t t-if='receipt.client'>
+                <div><t t-esc='receipt.client' /></div>
+            </t>
+        </t>
+    </t>
+
+</templates>

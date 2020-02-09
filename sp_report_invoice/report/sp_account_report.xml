@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- QWeb Reports -->
+    <!-- QWeb Reports -->
+    <report
+        id="account.account_invoices"
+        model="account.invoice"
+        string="Invoices"
+        report_type="qweb-pdf"
+        name="sp_report_invoice.sp_report_invoice"
+        file="sp_report_invoice.sp_report_invoice"
+        attachment_use="True"
+        attachment="(object.state in ('open','paid')) and ('INV'+(object.number or '').replace('/','')+'.pdf')"
+    />
+
+    <report
+        id="account.account_invoice_action_report_duplicate"
+        model="account.invoice"
+        string="Duplicates"
+        report_type="qweb-pdf"
+        name="sp_report_invoice.sp_account_invoice_report_duplicate_main"
+        file="sp_report_invoice.sp_account_invoice_report_duplicate_main"
+        attachment_use="False"
+    />
+</odoo>

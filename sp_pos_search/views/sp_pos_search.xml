@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+	<!-- Adds all assets in Odoo -->
+        <template id="assets" name="sp_pos_search assets" inherit_id="point_of_sale.assets">
+            <xpath expr="." position="inside">
+		<!--These links will be called when loading your Odoo -->
+                <script type="text/javascript" src="/sp_pos_search/static/src/js/sp_pos_search.js"></script>
+                <link rel="stylesheet" href="/sp_pos_search/static/src/css/sp_pos_search.css" />
+            </xpath>
+        </template>
+    </data>
+</openerp>

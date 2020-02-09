@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_product_product_form_print_no_create" model="ir.ui.view">
+		<field name="model">product.product</field>
+		<field name="inherit_id" ref="product_to_print.view_product_product_form_print"/>
+		<field name="arch" type="xml">
+            <xpath expr="//field[@name='category_print_id']" position="attributes">
+		        <attribute name="options">{'no_create': True}</attribute>
+		    </xpath>
+		</field>
+	</record>
+</odoo>

@@ -1,0 +1,31 @@
+.accordion .ui-accordion-header{
+    font-size: 13px;
+    text-align:center;
+    border: none;
+    background: none;
+    color: #0073ea;
+}
+
+.accordion .ui-accordion-content{
+    border:none;
+}
+
+.oe_website_login_container .btn{
+    text-align:center;
+    width:100%;
+}
+
+.logo{
+    text-align:center;
+}
+
+.oauth_providers a:hover,
+.oauth_providers a{
+    color: #FFF;
+    background: #286090;
+    border-color: #204d74;
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 4px;
+    line-height:1.428571429; 
+}

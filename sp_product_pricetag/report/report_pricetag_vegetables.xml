@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="minimal_layout_inherit" inherit_id="report.minimal_layout">
+        <xpath expr="//head" position="inside">
+            <link rel='stylesheet' href="/sp_product_pricetag/static/src/css/sp_pricetag_vegetables.css"/>
+        </xpath>
+    </template>
+    <template id="report_pricetag_vegetables">
+        <t t-call="report.html_container">
+        <div class="page">
+            <t t-foreach="Products" t-as="product">
+                <t t-foreach="product['line'].quantity" t-as="q">
+                    <div class="label_container_vege label_border">
+                        <div class="pricetag_vege">
+                            <div class="label_top_vege border_red"> <!-- label_border_vege -->
+                                <div class="product_code_vege border_cyan">
+                                    <t t-esc="product['product'].barcode_base"/>
+                                </div>
+                                <div class="product_name_vege border_black">
+                                    <t t-esc="product['product'].name"/>
+                                </div>
+                            </div>
+                            <div class="label_middle_vege">
+                                <div class="label_middle_left border_green">
+                                    <div class="product_informations_vege">
+                                        <t name="pricetag_origine" t-if="product['product'].pricetag_origin">Origine : <t t-esc="product['product'].pricetag_origin"/><br/></t>
+                                        <t name="pricetag_maker" t-if="product['product'].maker_description">Producteur : <t t-esc="product['product'].maker_description"/><br/></t>
+                                        <div class="pricetag_coopinfos">
+                                            <t t-if="product['product'].pricetag_coopinfos">Infos : <t t-esc="product['product'].pricetag_coopinfos"/></t>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="label_middle_right border_blue">
+                                    <div class="product_price_vege">
+                                        <t t-esc="'%0.2f' % (product['product'].list_price)" />€
+                                    </div>
+                                    <div class="product_price_uom_vege">
+                                        /<t t-esc="product['product'].uom_id.name"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="label_bottom_vege border_grey">
+                                <div class="barcode_date">
+                                    <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d-%m-%Y %H:%M')"/>
+                                </div>
+                                <div class="product_barcode border_yellow">
+                                    <img t-if="product['product'].barcode" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN13', product['product'].barcode, 600, 600)" class='barcode_image' style='margin: 0 auto; padding: 0;'/>
+                                    <t t-if="product['product'].barcode">
+                                        <t t-esc="product['product'].barcode"/>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </div>
+        </t>
+    </template>
+</odoo>

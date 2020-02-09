@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<template id="sp_invoice_layout_footer" inherit_id="report.external_layout_footer">
+    <xpath expr="//li[@t-if='company.email'][1]" position="replace">
+        <li t-if="company.email">Email : <span>sav@supercoop.fr</span></li>
+    </xpath>
+</template>
+</data>
+</openerp>

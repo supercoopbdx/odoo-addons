@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="minimal_layout_inherit" inherit_id="report.minimal_layout">
+        <xpath expr="//head" position="inside">
+            <link rel='stylesheet' href="/sp_product_pricetag/static/src/css/sp_pricetag.css"/>
+        </xpath>
+    </template>
+    <template id="report_pricetag_no_price">
+        <t t-call="report.html_container">
+            <div class="page">
+                <t t-foreach="Products" t-as="product">
+                    <t t-foreach="product['line'].quantity" t-as="q">
+                        <div class="label_container label_border">
+                            <div class="pricetag">
+                                <div class="label_top">
+                                    <div class="product_name">
+                                        <div class="product_name_text"><t t-esc="product['product'].name"/></div>
+                                    </div>
+                                </div>
+                                <div class="label_left">
+                                    <div class="product_informations">
+                                    </div>
+                                </div>
+                                <div class="label_right">
+                                </div>
+                                <div class="label_bottom">
+                                    <div class="product_barcode">
+                                        <img t-if="product['product'].barcode" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN13', product['product'].barcode, 600, 600)" class='barcode_image' style='margin: 0 auto; padding: 0;'/>
+                                        <span class="product_informations" t-field="product['product'].barcode" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </div>
+        </t>
+    </template>
+</odoo>

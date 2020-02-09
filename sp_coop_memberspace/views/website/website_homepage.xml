@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp><data>
+    <template id="sp_coop_memberspace.homepage" inherit_id="coop_memberspace.homepage">
+        <xpath expr="//a[@href='/mywork']/../../../.." position="replace">
+            <div>
+                <h3>Mon prochain service</h3>
+                <t t-set="icon" t-value="'alarm'"/>
+                <t t-set="css_class" t-value="''"/>
+                <t t-if="not date_begin">
+                    <t t-set="icon" t-value="'warning'"/>
+                    <t t-set="css_class" t-value="'alert-warning'"/>
+                </t>
+                <div t-attf-class="{{ css_class }}" style="border: 1px solid #b2b7bb;padding: 10px;min-height: 115px;">
+                    <div class="row">
+                        <div class="col-md-3 col-xs-3" style="text-align: center">
+                            <i class="material-icons" style="font-size: 4.5em"><span t-esc="icon" /></i>
+                            <span t-if="next_shit_week_number" style="font-size: 3em;font-weight: 600;" t-esc="next_shit_week_number" />
+                        </div>
+                        <div class="col-md-6 col-xs-6">
+                            <p class="text-right" t-if="date_begin" t-esc="date_begin"/>
+                            <p class="text-right" t-if="next_shift_week_number">Semaine <span t-esc="next_shift_week_number"/></p>
+                            <p class="text-right" t-if="not date_begin">Pensez à programmer un prochain service</p>
+                        </div>
+                        <div class="col-md-3 col-xs-3" style="text-align: right;margin-top:7px;">
+                            <a href="/mywork"><span class="fa fa-caret-right" style="font-size: 4em"/></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+	</template>
+</data></openerp>

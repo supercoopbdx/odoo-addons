@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pricetag_model_vegetables" model="pricetag.model">
+        <field name="name">Vegetables pricetag model</field>
+        <field name="pricetag_paperformat_id" ref="sp_product_pricetag.paperformat_pricetag_vegetables"/>
+        <field name="report_model">sp_product_pricetag.report_pricetag_vegetables</field>
+    </record>
+
+    <record id="product_to_print.pricetag_model_default" model="pricetag.model">
+        <field name="pricetag_paperformat_id" ref="sp_product_pricetag.paperformat_pricetag"/>
+        <field name="report_model">sp_product_pricetag.report_pricetag</field>
+    </record>
+
+    <record id="pricetag_model_no_price" model="pricetag.model">
+        <field name="name">Default pricetag without price</field>
+        <field name="pricetag_paperformat_id" ref="sp_product_pricetag.paperformat_pricetag"/>
+        <field name="report_model">sp_product_pricetag.report_pricetag_no_price</field>
+    </record>
+</odoo>
