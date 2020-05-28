@@ -2,6 +2,7 @@
 # © 2016 Serpent Consulting Services Pvt. Ltd. (support@serpentcs.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from openerp.exceptions import UserError
 from openerp import api, fields, models, _
 
 
@@ -62,13 +63,11 @@ class MassObject(models.Model):
             'src_model': src_obj,
             'view_type': 'form',
             'context': "{'mass_editing_object' : %d}" % (self.id),
-            'view_mode': 'form,tree',
+            'view_mode': 'form, tree',
             'target': 'new',
             'auto_refresh': 1,
         }).id
-        # We make sudo as any user with rights in this model should be able
-        # to create the action, not only admin
-        vals['ref_ir_value_id'] = self.env['ir.values'].sudo().create({
+        vals['ref_ir_value_id'] = self.env['ir.values'].create({
             'name': button_name,
             'model': src_obj,
             'key2': 'client_action_multi',
@@ -80,10 +79,14 @@ class MassObject(models.Model):
 
     @api.multi
     def unlink_action(self):
-        # We make sudo as any user with rights in this model should be able
-        # to delete the action, not only admin
-        self.mapped('ref_ir_act_window_id').sudo().unlink()
-        self.mapped('ref_ir_value_id').sudo().unlink()
+        for mass in self:
+            try:
+                if mass.ref_ir_act_window_id:
+                    mass.ref_ir_act_window_id.unlink()
+                if mass.ref_ir_value_id:
+                    mass.ref_ir_value_id.unlink()
+            except:
+                raise UserError(_("Deletion of the action record failed."))
         return True
 
     @api.multi
@@ -91,7 +94,7 @@ class MassObject(models.Model):
         self.unlink_action()
         return super(MassObject, self).unlink()
 
-    @api.multi
+    @api.returns('self', lambda value: value.id)
     def copy(self, default=None):
         if default is None:
             default = {}
