@@ -1,10 +1,12 @@
 /** Retire le fil d'ariane et le menu de categories **/
+/**
 .pos .breadcrumbs {
     display: none;
 }
 .pos .categories {
     display: none;
 }
+**/
 
 /** Retire l'adresse et le tel du coopain de la liste des clients **/
 .pos .clientlist-screen .client-details-left {
