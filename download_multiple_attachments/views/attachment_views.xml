@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_attachment_search" model="ir.ui.view">
+        <field name="name">ir.attachment.search</field>
+        <field name="model">ir.attachment</field>
+        <field name="inherit_id" ref="base.view_attachment_search"/>
+        <field name="arch" type="xml">
+            <filter name="owner" position="before">
+                <filter name="model" string="Model" domain="[]" context="{'group_by':'res_model'}"/>
+            </filter>
+            <xpath expr="//filter[contains(@domain, 'url')]" position="before">
+                <filter name="model_res_partner" string="Partners" domain="[('res_model','=','res.partner')]" context="[]"/>
+                <filter name="model_account_invoice" string="Invoices" domain="[('res_model','=','account.invoice')]" context="[]"/>
+                <filter name="model_sale_order" string="Sale orders" domain="[('res_model','=','sale.order')]" context="[]"/>
+                <separator/>
+            </xpath>
+        </field>
+    </record>
+
+
+
+    <menuitem action="base.action_attachment" id="base.menu_action_attachment" parent="base.menu_administration"/>
+</odoo>

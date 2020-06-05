@@ -1,0 +1,47 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* download_multiple_attachments
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-04-26 12:04+0000\n"
+"PO-Revision-Date: 2019-04-26 12:04+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: download_multiple_attachments
+#: model:ir.actions.server,name:download_multiple_attachments.ir_action_download_attachment
+msgid "Download"
+msgstr "Télécharger"
+
+#. module: download_multiple_attachments
+#: model:ir.ui.view,arch_db:download_multiple_attachments.view_attachment_search
+msgid "Invoices"
+msgstr "Factures"
+
+#. module: download_multiple_attachments
+#: model:ir.ui.view,arch_db:download_multiple_attachments.view_attachment_search
+msgid "Model"
+msgstr "Modèle"
+
+#. module: download_multiple_attachments
+#: model:ir.ui.view,arch_db:download_multiple_attachments.view_attachment_search
+msgid "Partners"
+msgstr "Partenaires"
+
+#. module: download_multiple_attachments
+#: model:ir.ui.view,arch_db:download_multiple_attachments.view_attachment_search
+msgid "Sale orders"
+msgstr "Devis/Bons de commande"
+
+#. module: download_multiple_attachments
+#: model:ir.model,name:download_multiple_attachments.model_ir_attachment
+msgid "ir.attachment"
+msgstr "ir.attachment"
+
