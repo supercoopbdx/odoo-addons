@@ -1,7 +1,8 @@
-$(function(){
-    $(".accordion").accordion({
-        collapsible:false,
-        active:true,
-        icons:null,
-    });
-});
+// $(function(){
+//     $(".accordion").accordion({
+//         animate:false,
+//         collapsible:true,
+//         active:true,
+//         icons:null,
+//     });
+// });

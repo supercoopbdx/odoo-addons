@@ -1,19 +1,21 @@
-.accordion .ui-accordion .ui-widget{
+.accordion{
     border: 1px solid #204d74;
     border-radius: 4px;
 }
 
-.accordion .ui-accordion-header{
+.accordion h3{
     font-size: 13px;
     text-align: center;
     border: none;
     margin: 0;
     color: #FFF;
     background-color: #286090;
+    padding: 10px 0;
 }
 
-.accordion .ui-accordion-content{
-    border:none;
+.accordion .accordion-content {
+    margin: 20px 25px;
+    border: none;
 }
 
 .oe_website_login_container .btn{
