@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <odoo>
+        <record id="view_report_pos_order_pivot_margin_inherit" model="ir.ui.view">
+            <field name="name">report.pos.order.pivot.inherit</field>
+            <field name="model">report.pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_report_pos_order_pivot"/>
+            <field name="arch" type="xml">
+                <field name="price_total" position="after">
+                    <field name="margin_total" type="measure"/>
+                    <field name="margin_rate" type="measure"/>
+                </field>
+            </field>
+        </record>
+    </odoo>
+</openerp>

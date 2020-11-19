@@ -5,17 +5,20 @@
 
 {
     'name': 'POS Margin',
-    'version': '9.0.1.0.0',
+    'version': '9.0.2.0.0',
     'category': 'Point Of Sale',
     'sequence': 1,
-    'author': "GRAP,"
+    'author': "Adaptation pour Supercoop (basée sur la v12),"
+              "GRAP,"
               "Odoo Community Association (OCA)",
     'summary': 'Margin on PoS Order',
     'depends': [
         'point_of_sale',
+        'sale_margin',
     ],
     'data': [
         'views/view_pos_order.xml',
+        'report/report_pos_order_margin.xml',
     ],
     'installable': True,
 }
