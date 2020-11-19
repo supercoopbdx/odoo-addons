@@ -1,9 +1,15 @@
+.accordion .ui-accordion .ui-widget{
+    border: 1px solid #204d74;
+    border-radius: 4px;
+}
+
 .accordion .ui-accordion-header{
     font-size: 13px;
-    text-align:center;
+    text-align: center;
     border: none;
-    background: none;
-    color: #0073ea;
+    margin: 0;
+    color: #FFF;
+    background-color: #286090;
 }
 
 .accordion .ui-accordion-content{
@@ -19,6 +25,9 @@
     text-align:center;
 }
 
+.oauth_providers {
+    margin-bottom: 10px;
+}
 .oauth_providers a:hover,
 .oauth_providers a{
     color: #FFF;
@@ -27,5 +36,5 @@
     display: inline-block;
     padding: 6px 12px;
     border-radius: 4px;
-    line-height:1.428571429; 
+    line-height:1.428571429;
 }
