@@ -47,7 +47,7 @@ class Website(openerp.addons.coop_memberspace.controllers.main.Website):
             ('state', '=', 'confirm'),
         ], order="date_begin") or []
         return request.render(
-            'coop_memberspace.planning',
+            'sp_coop_memberspace.planning',
             {
                 'user': user,
                 'shift_type': user.partner_id.shift_type,
