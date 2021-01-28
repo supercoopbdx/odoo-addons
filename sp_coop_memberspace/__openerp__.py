@@ -22,6 +22,7 @@
     ],
     # always loaded
     'data': [
+        'views/website/planning.xml',
         'views/website/website_homepage.xml',
     ],
     # only loaded in demonstration mode
