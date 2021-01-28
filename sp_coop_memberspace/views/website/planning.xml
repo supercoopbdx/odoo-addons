@@ -9,14 +9,14 @@
                     <p>Manque de coopérateurs·trices sur les services à venir : choisir en priorité les créneaux <span style="color: #ee2c2c;">rouges</span>, puis <span style="color: #ffa500;">oranges</span>, puis <span style="color: #ffd700;">jaunes</span>, puis <span style="color: #ffe4c4;">beiges</span>...</p>
                     <div class="row programmer_un_service">
                         <t t-if="upcoming_shifts">
-                            <t t-set="week_number" t-value="dict(upcoming_shifts[0]._fields['week_number'].selection).get(upcoming_shifts[0].week_number)" />
+                            <t t-set="week_number" t-value="upcoming_shifts[0].week_number" />
                             <t t-set="date" t-value="upcoming_shifts[0].date_without_time" />
                             <div class="col-md-12"><h3>Semaine <span t-esc="week_number" /></h3></div>
                             <div class="col-md-12"><h4><span t-esc="user.get_time_by_user_lang(upcoming_shifts[0].date_begin, ['%A %d %B %Y'])[0]" /></h4></div>
                         </t>
                         <t t-if="upcoming_shifts" t-foreach="upcoming_shifts" t-as="shift">
-                            <t t-if="dict(shift._fields['week_number'].selection).get(shift.week_number) != week_number">
-                                <t t-set="week_number" t-value="dict(shift._fields['week_number'].selection).get(shift.week_number)" />
+                            <t t-if="shift.week_number != week_number">
+                                <t t-set="week_number" t-value="shift.week_number" />
                                 <div class="col-md-12"><h3>Semaine <span t-esc="week_number" /></h3></div>
                             </t>
                             <t t-if="shift.date_without_time != date">
@@ -60,18 +60,6 @@
                         </t>
                         <t t-call="coop_memberspace.programmer_modal" />
                         <t t-call="coop_memberspace.modal_error" />
-
-                        <div class="col-md-12"><h4><span t-esc="date" /></h4></div>
-                        <t t-if="shift.seats_available >= shift.seats_reserved" t-set="color" t-value="'red'" />
-                        <t t-if="shift.seats_reserved > shift.seats_available" t-set="color" t-value="'black'" />
-                        <div class="col-md-3" t-attf-style="border: 1px solid {{ color }}; margin: 10px;">
-                            <h5><span t-esc="shift.name" /></h5>
-                            <t t-set="date_begin" t-value="user.get_time_by_user_lang(shift.date_begin, ['%A %d %B %Hh%M', '%HH%M'], lang=user.lang + '.utf8')" />
-                            <t t-set="date_end" t-value="user.get_time_by_user_lang(shift.date_end, ['%A %d %B %Hh%M', '%HH%M'], lang=user.lang + '.utf8')" />
-                            <div><span t-esc="date_begin and date_begin[0] or ''" /> - <span t-esc="date_end and date_end[1] or ''" /></div>
-                            <div><span t-esc="shift.seats_reserved" /> participants attendus</div>
-                            <div t-attf-style="color: {{ color }};"><strong><span t-esc="shift.seats_available" /> places disponibles</strong></div>
-                        </div>
                     </div>
                 </div>
             </div>

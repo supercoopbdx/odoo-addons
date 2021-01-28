@@ -22,6 +22,8 @@
     ],
     # always loaded
     'data': [
+        'views/templates.xml',
+
         'views/website/planning.xml',
         'views/website/website_homepage.xml',
     ],

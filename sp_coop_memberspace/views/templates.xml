@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <template id="sp_coop_memberspace.assets_frontend" inherit_id="website.assets_frontend" name="Metasource">
+        <xpath expr="." position="inside">
+
+            <!-- libs css -->
+
+            <!-- less -->
+
+            <!-- lib js -->
+
+            <!-- Odoo framework libs -->
+
+            <!-- custom js -->
+            <script src="/sp_coop_memberspace/static/src/js/programmer_un_service.js" type="text/javascript"/>
+        </xpath>
+    </template>
+</openerp>
