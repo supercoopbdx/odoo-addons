@@ -62,3 +62,11 @@ class PosOrderLine(models.Model):
         # We call _get_purchase_price from sale_margin module, to reuse
         # computation that handles multi currencies context and UoM
         SaleOrderLine = self.env['sale.order.line']
+
+        # if used in combination with module which does add the uom_id to line
+        uom = hasattr(line, 'uom_id') and line.uom_id\
+            or line.product_id.uom_id
+
+        return SaleOrderLine._get_purchase_price(
+            line.order_id.pricelist_id, line.product_id, uom,
+            line.order_id.date_order)['purchase_price']
