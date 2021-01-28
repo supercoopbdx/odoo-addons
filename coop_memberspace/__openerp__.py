@@ -6,11 +6,7 @@
 
 {
     'name': 'Coop Memberspace',
-    'description': """
-        Version 0.0.0.3 : inscription à un service (volant ou rattrapage) possible depuis la page planning
-        Version 0.0.0.2 : ajout de la page planning par Supercoop pour visualiser les prochains services confirmés avec le nombre de places disponibles
-    """,
-    'version': '0.0.0.3',
+    'version': '0.0.0.1',
     'category': 'Custom',
     'author': 'La Louve',
     'website': 'http://www.lalouve.net',
@@ -49,7 +45,6 @@
         'views/website/statistics.xml',
         'views/website/website_homepage.xml',
         'views/website/website_template.xml',
-        'views/website/planning.xml',
     ],
     'installable': True,
 }

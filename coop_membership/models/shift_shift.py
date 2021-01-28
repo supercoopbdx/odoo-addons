@@ -38,7 +38,6 @@ class ShiftShift(models.Model):
         [('open', 'Open'), ('closed', 'Closed')],
         string="State in holiday",
     )
-    is_on_holiday = fields.Boolean(string="Is On Holiday", default=False)
     holiday_single_state = fields.Selection(
         [('draft', 'Draft'),
          ('confirmed', 'Confirmed'),
@@ -46,6 +45,10 @@ class ShiftShift(models.Model):
          ('cancel', 'Canceled')],
         related="single_holiday_id.state",
         string="Single Holiday Status",
+    )
+    required_skill_ids = fields.Many2many(
+        related="shift_template_id.required_skill_ids",
+        readonly=True,
     )
 
     @api.multi
@@ -171,11 +174,14 @@ class ShiftShift(models.Model):
         shifts = shift_env.search([
             ('is_send_reminder', '=', False),
             ('shift_type_id.is_ftop', '=', True),
-            ('is_on_holiday', '=', False),
             ('state', 'not in', ('cancel', 'done')),
             ('date_begin', '>=', fields.Date.context_today(self)),
             ('date_begin', '<=',
-             (datetime.now() + timedelta(days=12)).strftime('%Y-%m-%d'))
+             (datetime.now() + timedelta(days=12)).strftime('%Y-%m-%d')),
+            '|', ('long_holiday_id', '=', False),
+            ('long_holiday_id.send_email_reminder', '=', True),
+            '|', ('single_holiday_id', '=', False),
+            ('single_holiday_id.send_email_reminder', '=', True),
         ])
 
         # Get attendent

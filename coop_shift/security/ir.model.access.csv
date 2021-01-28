@@ -1,4 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_shift_config_settings,access_shift_config_settings,coop_shift.model_coop_shift_config_settings,coop_shift.group_shift_manager,1,1,1,0
 ,,,,,,,
 access_shift_counter_event_reader,access_shift_counter_event_reader,coop_shift.model_shift_counter_event,base.group_user,1,0,0,0
 access_shift_counter_event_user,access_shift_counter_event_user,coop_shift.model_shift_counter_event,coop_shift.group_shift_see_counter_event,1,0,0,0
@@ -61,5 +62,3 @@ ir_model_access_event_mail_access,event.mail access,event.model_event_mail,coop_
 ir_model_access_event_ticket_access,event.ticket access,event_sale.model_event_event_ticket,coop_shift.group_event_without_menu,1,1,1,1
 ,,,,,,,
 ir_model_access_event_mail_registration,event.mail.registration access,event.model_event_mail_registration,coop_shift.group_event_without_menu,1,1,1,1
-,,,,,,,
-ir_model_access_shift_template_registration_membership_read,shift.template.registration membership read access,coop_shift.model_shift_template_registration,coop_membership.group_membership_bdm_lecture,1,0,0,0

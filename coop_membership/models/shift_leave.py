@@ -77,7 +77,7 @@ class ShiftLeave(models.Model):
                 leave.absence_less_than_15days = True
             else:
                 leave.absence_less_than_15days = False
-                
+
     @api.multi
     @api.depends('partner_id', 'type_id', 'stop_date', 'non_defined_leave')
     def _compute_proposed_date(self):
@@ -242,8 +242,8 @@ class ShiftLeave(models.Model):
                 if leave.type_id.is_temp_leave and days_leave < 56:
                     leave.show_proceed_message = True
                     leave.proceed_message = (_(
-                        "Leave duration is under 8 weeks, do you want to proceed?"
-                    ))
+                        "Leave duration is under 8 weeks, "
+                        "do you want to proceed?"))
 
     @api.multi
     @api.constrains('type_id', 'partner_id', 'start_date', 'stop_date')
@@ -256,23 +256,29 @@ class ShiftLeave(models.Model):
                 today and l.state != 'cancel' and
                 l.shift_ticket_id.shift_type == 'standard')
             if record.type_id.is_anticipated:
-                num_line_guess = record.calculate_number_shift_future_in_leave()
+                num_line_guess = \
+                    record.calculate_number_shift_future_in_leave()
                 total_line = len(abcd_lines_in_leave) + num_line_guess
                 if record.partner_id.in_ftop_team:
-                    raise ValidationError(
-                        _("This member is not part of an ABCD team."))
+                    raise ValidationError(_(
+                        "This member is not part of an ABCD team."))
                 elif record.partner_id.final_standard_point != 0:
                     raise ValidationError(_(
-                        "Normally, this member is not eligible for early" +
-                        " leave because he has to catch up"))
+                        "Normally, this member is not eligible for early "
+                        "leave because he has to catch up.\n\n"
+                        "Count: %d") % record.partner_id.final_standard_point)
                 elif total_line < 2:
                     raise ValidationError(_(
                         "The period of leave must include TWO" +
                         " minimum missed services."))
                 elif record.partner_id.final_ftop_point < total_line:
                     raise ValidationError(_(
-                        "The member does not have enough" +
-                        " credits to cover the proposed period."))
+                        "The member does not have enough credits to "
+                        "cover the proposed period.\n\n"
+                        "Required: %d\n"
+                        "Got: %d") % (
+                            total_line,
+                            record.partner_id.final_ftop_point))
 
     @api.multi
     def update_info_anticipated_leave(self):
@@ -364,10 +370,10 @@ class ShiftLeave(models.Model):
             shift_after_leave = []
             for template in templates:
                 # Get the day after end leave 30 days to guess shift after leave
-                next_shift_mounth = (fields.Datetime.from_string(
+                next_shift_month = (fields.Datetime.from_string(
                     stop_date) + timedelta(days=30)).strftime('%Y-%m-%d')
                 rec_dates = template.get_recurrent_dates(
-                    template.last_shift_date, next_shift_mounth)
+                    stop_date, next_shift_month)
 
                 for rec in rec_dates:
                     if fields.Datetime.to_string(rec) > stop_date:
@@ -437,7 +443,7 @@ class ShiftLeave(models.Model):
     @api.multi
     def update_registration_template_based_non_define_leave(self):
         '''
-        This method is remove such members from their teams 
+        This method is remove such members from their teams
         immediately by putting the end day for the templates closest the leave
         of current partner. Apply for non-define leave
         '''

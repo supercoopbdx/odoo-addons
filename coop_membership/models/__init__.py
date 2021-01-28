@@ -32,3 +32,5 @@ from . import res_partner_inform
 from . import shift_counter_reason
 from . import mail_mass_mailing_contact
 from . import shift_credit_config
+from . import shift_mail_registration
+from . import shift_template_operation

@@ -85,12 +85,18 @@ class ShiftTemplateRegistrationLine(models.Model):
         self.ensure_one()
         lines = self.partner_id.tmpl_reg_line_ids
         for line in lines:
-            if (line.date_begin <= self.date_end or not self.date_end) and\
-                (line.date_end >= self.date_begin or not line.date_end) and\
-                    line.id != self.id:
+            if (
+                (line.date_begin <= self.date_end or not self.date_end)
+                and (line.date_end >= self.date_begin or not line.date_end)
+                and line.id != self.id
+            ):
                 raise ValidationError(_(
-                    "You can't register this line because it would " +
-                    "create an overlap with another line for this member"))
+                    "You can't register this line because it would "
+                    "create an overlap with another line for this member.\n\n"
+                    "Line: %s - %s\n"
+                    "Overlap: %s - %s") % (
+                        self.date_begin, self.date_end,
+                        line.date_begin, line.date_end))
 
     @api.multi
     def _compute_current(self):
@@ -184,7 +190,9 @@ class ShiftTemplateRegistrationLine(models.Model):
                     "You cannot make changes on this template registration. "
                     "Please make your changes directly on the leave recorded "
                     "for this period. You will need to cancel it then set to "
-                    "draft before you can make required changes."))
+                    "draft before you can make required changes.\n\n"
+                    "Registration: (ID: %s) - %s") % (
+                        line, line.partner_id.name))
 
             sr_obj = self.env['shift.registration']
             st_reg = line.registration_id
@@ -220,7 +228,7 @@ class ShiftTemplateRegistrationLine(models.Model):
                 lambda s, b=begin, e=end: (
                     self.convert_local_date(s.date_begin) >= b or not b) and (
                     self.convert_local_date(s.date_end) <= e or not e) and (
-                    s.state != 'done'))
+                    s.state not in ('done', 'cancel')))
 
             for shift in shifts:
                 found = partner_found = False
@@ -238,16 +246,18 @@ class ShiftTemplateRegistrationLine(models.Model):
                     else:
                         ticket_id = shift.shift_ticket_ids.filtered(
                             lambda t: t.product_id ==
-                            st_reg.shift_ticket_id.product_id)[0]
-                        values = {
-                            'partner_id': partner.id,
-                            'state': state,
-                            'shift_id': shift.id,
-                            'shift_ticket_id': ticket_id.id,
-                            'tmpl_reg_line_id': line.id,
-                            'template_created': True,
-                        }
-                        sr_obj.create(values)
+                            st_reg.shift_ticket_id.product_id)
+                        if ticket_id:
+                            ticket_id = ticket_id[0]
+                            values = {
+                                'partner_id': partner.id,
+                                'state': state,
+                                'shift_id': shift.id,
+                                'shift_ticket_id': ticket_id.id,
+                                'tmpl_reg_line_id': line.id,
+                                'template_created': True,
+                            }
+                            sr_obj.create(values)
         return res
 
     @api.multi
