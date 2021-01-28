@@ -37,3 +37,20 @@ class Website(openerp.addons.coop_memberspace.controllers.main.Website):
         result = super(Website, self).index(**kwargs)
         result.qcontext['next_shift_week_number'] = week_number_chr
         return result
+
+    @http.route('/planning', type='http', auth='user', website=True)
+    def page_planning(self, **kwargs):
+        user = request.env.user
+        upcoming_shifts = request.env['shift.shift'].sudo().search([
+            ('shift_template_id.is_technical', '=', False),
+            ('date_begin', '>=', datetime.now().strftime('%Y-%m-%d %H:%M:%S')),
+            ('state', '=', 'confirm'),
+        ], order="date_begin") or []
+        return request.render(
+            'coop_memberspace.planning',
+            {
+                'user': user,
+                'shift_type': user.partner_id.shift_type,
+                'upcoming_shifts': upcoming_shifts,
+            }
+        )
