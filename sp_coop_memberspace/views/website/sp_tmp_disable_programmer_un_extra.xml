@@ -1,16 +1,21 @@
-<?xml version="1.0"?>
-<data name="sp_loginpage assets" inherit_id="website.assets_frontend">
-    <!-- <xpath expr="//a[@href='/standard/counter_extra']/../../../.." position="replace">
-    </xpath> -->
-    <!-- <xpath expr="//a[@href='/standard/programmer_un_extra']/../../.." position="replace">
-    </xpath> -->
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="sp_coop_memberspace.sp_tmp_disable_programmer_un_extra" inherit_id="coop_memberspace.mywork_standard">
 
-    <!-- <xpath expr="//a[@href='/standard/counter_extra']/.." position="replace">
-    </xpath> -->
-    <xpath expr="//a[@href='/standard/counter_extra']" position="attributes">
-          <attribute name="style">display: none;</attribute>
-    </xpath>
-    <xpath expr="//a[@href='/standard/programmer_un_extra']/../.." position="attributes">
-          <attribute name="style">display: none;</attribute>
-    </xpath>
-</data>
+            <!-- <xpath expr="//a[@href='/standard/counter_extra']/../../../.." position="replace">
+            </xpath> -->
+            <!-- <xpath expr="//a[@href='/standard/programmer_un_extra']/../../.." position="replace">
+            </xpath> -->
+
+            <!-- <xpath expr="//a[@href='/standard/counter_extra']/.." position="replace">
+            </xpath> -->
+            <xpath expr="//a[@href='/standard/counter_extra']" position="attributes">
+                  <attribute name="style">display: none;</attribute>
+            </xpath>
+            <xpath expr="//a[@href='/standard/programmer_un_extra']/../.." position="attributes">
+                  <attribute name="style">display: none;</attribute>
+            </xpath>
+        </template>
+    </data>
+</openerp>
