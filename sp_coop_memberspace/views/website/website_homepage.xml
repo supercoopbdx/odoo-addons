@@ -30,7 +30,7 @@
         </xpath>
 
         <xpath expr="//div[@class='oe_structure']" position="after">
-            <iframe srcdoc="" width="90%" height="600" style="margin: 0 5%;"></iframe>
+            <iframe src="https://docs.google.com/document/d/e/2PACX-1vSV-KvnMEa-VOAd5HRBi9pczssDy8ksqrq7l_YjkgGoORfBzZRUmes9Bxqv1OQT0P2krNjlkkg8S-ng/pub?embedded=true" width="90%" height="600" style="margin: 0 5%;"></iframe>
             <script>
                 $(function() {
                     $.get("https://docs.google.com/document/d/e/2PACX-1vSV-KvnMEa-VOAd5HRBi9pczssDy8ksqrq7l_YjkgGoORfBzZRUmes9Bxqv1OQT0P2krNjlkkg8S-ng/pub?embedded=true", function(html) {
