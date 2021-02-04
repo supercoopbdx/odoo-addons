@@ -9,15 +9,17 @@
                     <p>Manque de coopérateurs·trices sur les services à venir : choisir en priorité les créneaux <span style="color: #ee2c2c;">rouges</span>, puis <span style="color: #ffa500;">oranges</span>, puis <span style="color: #ffd700;">jaunes</span>, puis <span style="color: #ffe4c4;">beiges</span>...</p>
                     <div class="row programmer_un_service">
                         <t t-if="upcoming_shifts">
+                            <t t-set="week_name" t-value="upcoming_shifts[0].week_name" />
                             <t t-set="week_number" t-value="upcoming_shifts[0].week_number" />
                             <t t-set="date" t-value="upcoming_shifts[0].date_without_time" />
-                            <div class="col-md-12"><h3>Semaine <span t-esc="week_number" /></h3></div>
+                            <div class="col-md-12"><h3>Semaine <span t-esc="week_name" /></h3></div>
                             <div class="col-md-12"><h4><span t-esc="user.get_time_by_user_lang(upcoming_shifts[0].date_begin, ['%A %d %B %Y'])[0]" /></h4></div>
                         </t>
                         <t t-if="upcoming_shifts" t-foreach="upcoming_shifts" t-as="shift">
                             <t t-if="shift.week_number != week_number">
+                                <t t-set="week_name" t-value="shift.week_name" />
                                 <t t-set="week_number" t-value="shift.week_number" />
-                                <div class="col-md-12"><h3>Semaine <span t-esc="week_number" /></h3></div>
+                                <div class="col-md-12"><h3>Semaine <span t-esc="week_name" /></h3></div>
                             </t>
                             <t t-if="shift.date_without_time != date">
                                 <t t-set="date" t-value="shift.date_without_time" />

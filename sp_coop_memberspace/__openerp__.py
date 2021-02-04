@@ -25,6 +25,7 @@
         'views/templates.xml',
 
         'views/website/planning.xml',
+        'views/website/sp_tmp_disable_programmer_un_extra.xml',
         'views/website/website_homepage.xml',
     ],
     # only loaded in demonstration mode
