@@ -5,8 +5,8 @@
     <!-- <xpath expr="//a[@href='/standard/programmer_un_extra']/../../.." position="replace">
     </xpath> -->
 
-    <xpath expr="//a[@href='/standard/counter_extra']/.." position="replace">
-    </xpath>
+    <!-- <xpath expr="//a[@href='/standard/counter_extra']/.." position="replace">
+    </xpath> -->
     <xpath expr="//a[@href='/standard/counter_extra']" position="attributes">
           <attribute name="style">display: none;</attribute>
     </xpath>
