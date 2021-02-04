@@ -12,21 +12,41 @@
                 </t>
                 <div t-attf-class="{{ css_class }}" style="border: 1px solid #b2b7bb;padding: 10px;min-height: 115px;">
                     <div class="row">
-                        <div class="col-md-3 col-xs-3" style="text-align: center">
+                        <div class="col-md-4 col-xs-6" style="text-align: center">
                             <i class="material-icons" style="font-size: 4.5em"><span t-esc="icon" /></i>
                             <span t-if="next_shit_week_number" style="font-size: 3em;font-weight: 600;" t-esc="next_shit_week_number" />
                         </div>
-                        <div class="col-md-6 col-xs-6">
+                        <div class="col-md-4 col-xs-6">
                             <p class="text-right" t-if="date_begin" t-esc="date_begin"/>
                             <p class="text-right" t-if="next_shift_week_number">Semaine <span t-esc="next_shift_week_number"/></p>
                             <p class="text-right" t-if="not date_begin">Pensez à programmer un prochain service</p>
                         </div>
-                        <div class="col-md-3 col-xs-3" style="text-align: right;margin-top:7px;">
+                        <div class="col-md-4 col-xs-12" style="text-align: right;margin-top:7px;">
                             <a href="/mywork"><span class="fa fa-caret-right" style="font-size: 4em"/></a>
                         </div>
                     </div>
                 </div>
             </div>
+        </xpath>
+
+        <xpath expr="//div[@class='oe_structure']" position="after">
+            <iframe srcdoc="" width="90%" height="600" style="margin: 0 5%;"></iframe>
+            <script>
+                $(function() {
+                    $.get("https://docs.google.com/document/d/e/2PACX-1vSV-KvnMEa-VOAd5HRBi9pczssDy8ksqrq7l_YjkgGoORfBzZRUmes9Bxqv1OQT0P2krNjlkkg8S-ng/pub?embedded=true", function(html) {
+                        var contents = $("iframe").contents();
+                        contents.find("html").html(html);
+                        setTimeout(function() {
+                            contents.find('a[href^="http://"]').attr("target", "_blank");
+                            contents.find('a[href^="https://"]').attr("target", "_blank");
+                            contents.find('a[href^="#"]').each(function(i, el) {
+                                el.href = "https://docs.google.com/document/d/e/2PACX-1vSV-KvnMEa-VOAd5HRBi9pczssDy8ksqrq7l_YjkgGoORfBzZRUmes9Bxqv1OQT0P2krNjlkkg8S-ng/pub?embedded=true" + el.hash;
+                                el.target = "_self";
+                            });
+                        }, 1000); // Actually not sure if timeout is required here...
+                    });
+                });
+            </script>
         </xpath>
 	</template>
 </data></openerp>
