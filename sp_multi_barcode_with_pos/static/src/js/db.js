@@ -1,4 +1,4 @@
-odoo.define('pos_search_improvement.db', function (require) {
+odoo.define('sp_multi_barcode_with_pos.db', function (require) {
     "use strict";
 
     var PosDB = require('point_of_sale.DB');
