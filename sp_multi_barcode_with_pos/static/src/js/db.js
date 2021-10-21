@@ -14,10 +14,8 @@ odoo.define('sp_multi_barcode_with_pos.db', function (require) {
         // Overide _product_search_string to allow searching product by
         // Internal Reference and Barcode Only
         _product_search_string: function(product){
-            var str = product.display_name;
-            if (product.barcode) {
-                str += '|' + product.barcode;
-            }
+            var str = "";
+
             // Set Multi barcode for product
             var multi_barcode_ids = product.multi_barcode_ids;
             if (multi_barcode_ids) {
@@ -28,16 +26,12 @@ odoo.define('sp_multi_barcode_with_pos.db', function (require) {
                     str += '|' + multi_barcode.barcode;
                 }
             }
-            if (product.default_code) {
-                str += '|' + product.default_code;
-            }
-            var packagings = this.packagings_by_product_tmpl_id[product.product_tmpl_id] || [];
-            for (var i = 0; i < packagings.length; i++) {
-                str += '|' + packagings[i].barcode;
-            }
 
-            str  = product.id + ':' + str.replace(/:/g,'') + '\n';
-            return str;
+            var str2 = this._super(product);
+
+            var str3 = str2.replace(/\n$/, str + "\n");
+
+            return str3;
         },
         add_products: function(products){
             var res = this._super(products);

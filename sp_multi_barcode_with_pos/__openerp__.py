@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 # Copyright (C) 2016-Today: La Louve (<http://www.lalouve.fr/>)
-# @author: La Louve
+# @author: La Louve et Supercoop
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html
 
 
 {
-    'name': 'Multi code barre Supercoop',
+    'name': 'multi code barre avec modification de la recherche sur la caisse',
     'version': '9.0.1.0.0',
     'category': 'Point Of Sale',
-    'summary': 'Un module pour avoir plusieurs codes barre pour un produit, avec reconnaissances depuis la caisse. fork du module sp_multi_barcode_with_pos',
+    'summary': 'Un module pour avoir plusieurs codes barre pour un produit, avec reconnaissances depuis la caisse. fork du module pos_search_improvement',
     'author': 'La Louve et supercoop',
     'website': 'http://supercoop.fr',
     'depends': [
