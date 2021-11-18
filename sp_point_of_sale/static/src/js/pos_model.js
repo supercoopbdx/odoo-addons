@@ -5,7 +5,7 @@
 */
 
 
-odoo.define('coop_point_of_sale.pos_model', function (require) {
+odoo.define('sp_point_of_sale.pos_model', function (require) {
     "use strict";
 
     var pos_model = require('point_of_sale.models');

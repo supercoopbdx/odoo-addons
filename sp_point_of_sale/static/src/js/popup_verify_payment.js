@@ -4,7 +4,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html
 */
 
-odoo.define('coop_point_of_sale.popup_screen_payment', function (require) {
+odoo.define('sp_point_of_sale.popup_screen_payment', function (require) {
     "use strict";
 
     var models = require('point_of_sale.models');

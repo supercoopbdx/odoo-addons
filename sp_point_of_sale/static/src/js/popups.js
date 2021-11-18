@@ -4,7 +4,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html
 */
 
-odoo.define('coop_point_of_sale.popups_widget_custom', function (require) {
+odoo.define('sp_point_of_sale.popups_widget_custom', function (require) {
 "use strict";
 
 var BaseWidget = require('point_of_sale.BaseWidget');

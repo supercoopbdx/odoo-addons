@@ -1,4 +1,4 @@
-odoo.define('coop_point_of_sale.db', function (require) {
+odoo.define('sp_point_of_sale.db', function (require) {
     "use strict";
 
     var PosDB = require('point_of_sale.DB');
