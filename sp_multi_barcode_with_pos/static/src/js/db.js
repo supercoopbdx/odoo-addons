@@ -59,35 +59,5 @@ odoo.define('sp_multi_barcode_with_pos.db', function (require) {
         get_multi_barcodes: function(){
             return this.multi_barcode_by_id;
         },
-
-        search_product_in_category: function(category_id, query){
-
-            try {
-                query = query.replace(/[\[\]\(\)\+\*\?\.\-\!\&\^\$\|\~\_\{\}\:\,\\\/]/g,'.');
-                query = query.replace(/ /g,'.+');
-            }catch(e){
-                return [];
-            }
-            var res = this._super(category_id, query);
-            var results = [];
-
-            for(var i = 0; i < res.length; i++){
-                var multi_barcodes = this.get_multi_barcodes()
-                var barcode_ids = res[i].multi_barcode_ids;
-                if(res[i].barcode === query || res[i].default_code === query || res[i].description_sale === query || res[i].description === query){
-                    results.push(res[i]);
-                }else if (barcode_ids){
-                    for (var j = 0; j < barcode_ids.length; j ++){
-                        if (multi_barcodes[barcode_ids[j]].barcode === query){ 
-                            results.push(res[i]);
-                        }
-                    }
-                } else{
-                    break;
-                }
-            }
-            return results;
-        },
-
     });
 });
