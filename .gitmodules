@@ -4,3 +4,6 @@
 [submodule "sp_product_pricetag"]
 	path = sp_product_pricetag
 	url = https://github.com/supercoopbdx/sp_product_pricetag.git
+[submodule "sp_disable_creation"]
+	path = sp_disable_creation
+	url = https://github.com/supercoopbdx/sp_disable_creation.git
