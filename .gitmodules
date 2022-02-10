@@ -1,3 +1,6 @@
 [submodule "sp_account_export"]
 	path = sp_account_export
 	url = https://github.com/supercoopbdx/sp_account_export.git
+[submodule "sp_product_pricetag"]
+	path = sp_product_pricetag
+	url = https://github.com/supercoopbdx/sp_product_pricetag.git
